@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>bitcoinaddresss.js - bitcoin address send, pay and copy functions</title>
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+    <script src="bitcoinaddress.js"></script>
+    <script>
+        $(document).ready(function() {
+            bitcoinaddresss.init({
+
+            });
+        });
+    </script>
+
+
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+
+    <div class="navbar navbar-fixed-top navbar-default" id="navbar-site">
+        <div class="navbar-inner">
+            <div class="container">
+
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="#">bitcoinprices.js</a>
+                </div>
+
+                <ul class="nav navbar-nav">
+                  <li class="dropdown currency-dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-money"></i> <span class="currency-symbol">BTC</span><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    </ul>
+                  </li>
+                </ul>
+
+                <div class="nav navbar-nav navbar-right">
+                    <a class="navbar-brand" href="http://opensourcehacker.com"><i class="fa fa-star"></i> By Mikko Ohtamaa</a>
+                    <a class="navbar-brand" href="http://opensourcehacker.com"><i class="fa fa-rss"></i></a>
+                    <a class="navbar-brand" href="http://twitter.com/moo9000"><i class="fa fa-twitter"></i></a>
+                    <a class="navbar-brand" href="https://www.facebook.com/pages/Open-Source-Hacker/181710458567630"><i class="fa fa-facebook"></i></a>
+                </div>
+
+             </div>
+         </div>
+    </div>
+
+
+    <div class="container" style="min-height:480px;">
+
+        <div class="jumbotron">
+          <h1>bitcoinaddress.js</h1>
+          <p>JavaScript library for human-friendly Bitcoin address presentation, payments and sending bitcoins</p>
+          <p><a class="btn btn-primary btn-lg" role="button" href="https://github.com/miohtama/bitcoin-prices"><i class="fa fa-github"></i> View on Github</a></p>
+        </div>
+
+        <p>
+            <code>bitcoinaddress.js</code> is a JavaScript library allowing you to easily
+            mark existing bitcoin addresses on the HTML page and add send bitcoins and copy actions
+            for them.
+        </p>
+
+        <h2>Payment example example</h2>
+
+        <p class="text-center">
+            Send donations to this project to:
+        </p>
+
+        <p class="text-center">
+            <strong class="bitcoin-address" data-bitcoin-address="19356KxTs9Bw5AAdxens5hoxDSp5bsUKse">19356KxTs9Bw5AAdxens5hoxDSp5bsUKse</strong>
+        </p>
+
+        <div class="row">
+            <p class="text text-success lead text-center" style="margin-top: 3em">
+                <a href="https://github.com/miohtama/bitcoin-prices"><i class="fa fa-github"></i> Visit Github repository for more information</a>
+            </p>
+        </div>
+
+    </div>
+</body>
