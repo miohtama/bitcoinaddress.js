@@ -20,7 +20,9 @@
          * Create HTML for address actions.
          */
         createAddressActions : function() {
-            $(config.selector)
+            $(this.config.selector).each(function() {
+                // pass
+            });
         },
 
         /**

@@ -29,11 +29,12 @@ Put ``bitcoinaddress.js`` in your application.
 How it works
 -----------------
 
-
 Other
 ------
 
 `See also bitcoin-prices.js JavaScript project for presenting Bitcoin prices in human-friendly manner and alternative currencies like USD and EUR <https://github.com/miohtama/bitcoin-prices>`_.
+
+`Bitcoin URL scheme explained <http://bitcoin.stackexchange.com/questions/4987/bitcoin-url-scheme>`_.
 
 Author
 ------

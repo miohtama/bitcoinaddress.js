@@ -21,7 +21,9 @@
 
 
     <style type="text/css">
-
+        body {
+            padding-top: 60px;
+        }
     </style>
 </head>
 <body>
@@ -64,7 +66,7 @@
         <div class="jumbotron">
           <h1>bitcoinaddress.js</h1>
           <p>JavaScript library for human-friendly Bitcoin address presentation, payments and sending bitcoins</p>
-          <p><a class="btn btn-primary btn-lg" role="button" href="https://github.com/miohtama/bitcoin-prices"><i class="fa fa-github"></i> View on Github</a></p>
+          <p><a class="btn btn-primary btn-lg" role="button" href="https://github.com/miohtama/bitcoinaddress.js"><i class="fa fa-github"></i> View on Github</a></p>
         </div>
 
         <p>
@@ -79,15 +81,37 @@
             Send donations to this project to:
         </p>
 
-        <p class="text-center">
-            <strong class="bitcoin-address" data-bitcoin-address="19356KxTs9Bw5AAdxens5hoxDSp5bsUKse">19356KxTs9Bw5AAdxens5hoxDSp5bsUKse</strong>
-        </p>
-
-        <div class="row">
-            <p class="text text-success lead text-center" style="margin-top: 3em">
-                <a href="https://github.com/miohtama/bitcoin-prices"><i class="fa fa-github"></i> Visit Github repository for more information</a>
+        <div class="well">
+            <p class="text-center">
+                <strong class="bitcoin-address" data-bitcoin-address="19356KxTs9Bw5AAdxens5hoxDSp5bsUKse">19356KxTs9Bw5AAdxens5hoxDSp5bsUKse</strong>
             </p>
         </div>
 
+
+        <p class="text-center">
+            Send 0.1 BTC donation to this project:
+        </p>
+
+        <div class="well">
+            <p class="text-center">
+                <strong class="bitcoin-address" data-btc-amount="0.1" data-bitcoin-address="19356KxTs9Bw5AAdxens5hoxDSp5bsUKse">19356KxTs9Bw5AAdxens5hoxDSp5bsUKse</strong>
+            </p>
+        </div>
+        <div class="row">
+            <p class="text text-success lead text-center" style="margin-top: 3em">
+                <a href="https://github.com/miohtama/bitcoinaddress.js"><i class="fa fa-github"></i> Visit Github repository for more information</a>
+            </p>
+        </div>
     </div>
+
+    <template id="bitcoin-address-template" style="display: none">
+        <strong class="bitcoin-address"></strong>
+        <span class="bitcoin-address-action bitcoin-address-action-send">
+            Send payment
+        </span>
+
+        <span class="bitcoin-address-action bitcoin-address-action-copy">
+            Copy
+        </span>
+    </template>
 </body>
