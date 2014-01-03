@@ -13,8 +13,15 @@
     <script src="bitcoinaddress.js"></script>
     <script>
         $(document).ready(function() {
-            bitcoinaddresss.init({
+            bitcoinaddress.init({
 
+                // jQuery selector defining bitcon addresses on the page
+                // needing the boost
+                selector: ".bitcoin-address",
+
+                // Id of the DOM template element we use to decorate the addresses.
+                // This must contain placefolder .bitcoin-address
+                template: "bitcoin-address-template"
             });
         });
     </script>
@@ -23,6 +30,13 @@
     <style type="text/css">
         body {
             padding-top: 60px;
+        }
+
+        /* http://davidwalsh.name/html5-hidden */
+        *[hidden] { display: none; }
+
+        .bitcoin-address-copy-hint {
+            display: none;
         }
     </style>
 </head>
@@ -83,10 +97,9 @@
 
         <div class="well">
             <p class="text-center">
-                <strong class="bitcoin-address" data-bitcoin-address="19356KxTs9Bw5AAdxens5hoxDSp5bsUKse">19356KxTs9Bw5AAdxens5hoxDSp5bsUKse</strong>
+                <strong class="bitcoin-address" data-bc-address="19356KxTs9Bw5AAdxens5hoxDSp5bsUKse">19356KxTs9Bw5AAdxens5hoxDSp5bsUKse</strong>
             </p>
         </div>
-
 
         <p class="text-center">
             Send 0.1 BTC donation to this project:
@@ -94,7 +107,7 @@
 
         <div class="well">
             <p class="text-center">
-                <strong class="bitcoin-address" data-btc-amount="0.1" data-bitcoin-address="19356KxTs9Bw5AAdxens5hoxDSp5bsUKse">19356KxTs9Bw5AAdxens5hoxDSp5bsUKse</strong>
+                <strong class="bitcoin-address" data-bc-amount="0.1" data-bc-address="19356KxTs9Bw5AAdxens5hoxDSp5bsUKse">19356KxTs9Bw5AAdxens5hoxDSp5bsUKse</strong>
             </p>
         </div>
         <div class="row">
@@ -104,14 +117,29 @@
         </div>
     </div>
 
-    <template id="bitcoin-address-template" style="display: none">
-        <strong class="bitcoin-address"></strong>
-        <span class="bitcoin-address-action bitcoin-address-action-send">
-            Send payment
-        </span>
+    <!-- Use HTML5 templates when they are more widespread http://www.html5rocks.com/en/tutorials/webcomponents/template/ -->
+    <div id="bitcoin-address-template" class="bitcoin-address-container" hidden>
 
-        <span class="bitcoin-address-action bitcoin-address-action-copy">
+        <div class="bitcoin-address"></div>
+
+        <a href="#" class="bitcoin-address-action bitcoin-address-action-send">
+            <i class="fa fa-btc"></i>
+            Send payment
+        </a>
+
+        <a href="#" class="bitcoin-address-action bitcoin-address-action-copy">
+            <i class="fa fa-copy"></i>
             Copy
-        </span>
-    </template>
+        </a>
+
+        <a href="#" class="bitcoin-address-action bitcoin-address-action-qr">
+            <i class="fa fa-qrcode"></i>
+            QR code
+        </a>
+        <div class="bitcoin-address-copy-hint">
+            Press CTRL + C / CMD + C to copy Bitcoin address to clipboard
+        </div>
+
+    </div>
+
 </body>

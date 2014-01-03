@@ -29,12 +29,27 @@ Put ``bitcoinaddress.js`` in your application.
 How it works
 -----------------
 
+Supported data attributes
++++++++++++++++++++++++++++
+
+The following HTML5 data attributes are supported on ``.bitcoin-address`` elements
+
+* ``data-bc-address`` - bitcoin address for programmatical manipulation, **required**
+
+* ``data-bc-amount`` - suggestion how much to send
+
+* ``data-bc-label`` - address label in the wallet
+
+* ``data-bc-message`` - transaction message
+
 Other
 ------
 
 `See also bitcoin-prices.js JavaScript project for presenting Bitcoin prices in human-friendly manner and alternative currencies like USD and EUR <https://github.com/miohtama/bitcoin-prices>`_.
 
 `Bitcoin URL scheme explained <http://bitcoin.stackexchange.com/questions/4987/bitcoin-url-scheme>`_.
+
+`Bitcoin URIs in Electrum <https://electrum.org/bitcoin_URIs.html>`_.
 
 Author
 ------
