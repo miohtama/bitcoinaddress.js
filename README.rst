@@ -8,9 +8,13 @@ Introduction
 Features
 ---------
 
-* Use ``bc://`` protocol to make payments from your desktop, web or mobile bitcoin wallet
+* Use `bitcoin: URI protocol <https://github.com/bitcoin/bips/blob/master/bip-0021.mediawiki>`_ to make payments from your desktop, web or mobile bitcoin wallet
+
+* Generate QR codes in-fly with JavaScript to make payments from mobile applications
 
 * Copy bitcoin address to the clipboard
+
+* Customize and extend easily with custom DOM templates and JavaScript hooks
 
 Demos
 ------
@@ -50,6 +54,8 @@ Other
 `Bitcoin URL scheme explained <http://bitcoin.stackexchange.com/questions/4987/bitcoin-url-scheme>`_.
 
 `Bitcoin URIs in Electrum <https://electrum.org/bitcoin_URIs.html>`_.
+
+`QRCode.js - generate QR codes in JavaScript <https://github.com/davidshimjs/qrcodejs>`_.
 
 Author
 ------

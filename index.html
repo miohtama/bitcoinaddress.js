@@ -7,26 +7,6 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet" />
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-    <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-
-    <script src="bitcoinaddress.js"></script>
-    <script>
-        $(document).ready(function() {
-            bitcoinaddress.init({
-
-                // jQuery selector defining bitcon addresses on the page
-                // needing the boost
-                selector: ".bitcoin-address",
-
-                // Id of the DOM template element we use to decorate the addresses.
-                // This must contain placefolder .bitcoin-address
-                template: "bitcoin-address-template"
-            });
-        });
-    </script>
-
-
     <style type="text/css">
         body {
             padding-top: 60px;
@@ -35,8 +15,19 @@
         /* http://davidwalsh.name/html5-hidden */
         *[hidden] { display: none; }
 
-        .bitcoin-address-copy-hint {
+        /* Action hints are slidedowns */
+        .bitcoin-action-hint {
             display: none;
+        }
+
+        .bitcoin-address-container .bitcoin-address {
+            border-bottom: 1px dashed gray;
+            cursor: pointer;
+        }
+
+        .bitcoin-address-qr-container > img,
+        .bitcoin-address-qr-container > canvas{
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -120,11 +111,13 @@
     <!-- Use HTML5 templates when they are more widespread http://www.html5rocks.com/en/tutorials/webcomponents/template/ -->
     <div id="bitcoin-address-template" class="bitcoin-address-container" hidden>
 
-        <div class="bitcoin-address"></div>
+        <div>
+            <span class="bitcoin-address"></span>
+        </div>
 
         <a href="#" class="bitcoin-address-action bitcoin-address-action-send">
             <i class="fa fa-btc"></i>
-            Send payment
+            Pay from wallet
         </a>
 
         <a href="#" class="bitcoin-address-action bitcoin-address-action-copy">
@@ -136,10 +129,57 @@
             <i class="fa fa-qrcode"></i>
             QR code
         </a>
-        <div class="bitcoin-address-copy-hint">
-            Press CTRL + C / CMD + C to copy Bitcoin address to clipboard
+
+        <div class="bitcoin-action-hint bitcoin-action-hint-send">
+            Sending payment to the address from locally installed Bitcoin wallet app.
+        </div>
+
+        <div class="bitcoin-action-hint bitcoin-action-hint-copy">
+            Press CTRL + C or &#x2318; + C to copy the Bitcoin address.
+        </div>
+
+        <div class="bitcoin-action-hint bitcoin-action-hint-qr">
+            <p>
+                Scan the QR code with your mobile Bitcoin app to
+                make the payment:
+            </p>
+
+            <div class="bitcoin-address-qr-container">
+                <!-- Filled in by JS on action click -->
+            </div>
         </div>
 
     </div>
+
+
+    <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+    <script src="qrcode.js"></script>
+    <script src="bitcoinaddress.js"></script>
+    <script>
+        $(document).ready(function() {
+            bitcoinaddress.init({
+
+                // jQuery selector defining bitcon addresses on the page
+                // needing the boost
+                selector: ".bitcoin-address",
+
+                // Id of the DOM template element we use to decorate the addresses.
+                // This must contain placefolder .bitcoin-address
+                template: "bitcoin-address-template",
+
+                // Passed directly to QRCode.js
+                // https://github.com/davidshimjs/qrcodejs
+                qr : {
+                    width: 128,
+                    height: 128,
+                    colorDark : "#000000",
+                    colorLight : "#ffffff",
+                    correctLevel : QRCode.CorrectLevel.H
+                }
+            });
+        });
+    </script>
 
 </body>

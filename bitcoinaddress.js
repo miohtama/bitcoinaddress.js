@@ -61,7 +61,14 @@
         buildControls : function(elem, source) {
 
             // Replace .bitcoin-address in the template
-            elem.find(".bitcoin-address").text(source.attr("data-bc-address"));
+            var addr = elem.find(".bitcoin-address");
+            addr.text(source.attr("data-bc-address"));
+
+            // Copy orignal attributes;
+            $.each(["address", "amount", "label", "message"], function() {
+                var attrName = "data-bc-" + this;
+                elem.attr(attrName, source.attr(attrName));
+            });
 
             // Build BTC URL
             var url = this.buildBitcoinURI(source.attr("data-bc-address"),
@@ -100,19 +107,55 @@
         prepareCopySelection : function(elem) {
             var addy = elem.find(".bitcoin-address");
             window.getSelection().selectAllChildren(addy.get(0));
-            elem.find(".bitcoin-address-copy-hint").slideDown();
+            elem.find(".bitcoin-action-hint").hide();
+            elem.find(".bitcoin-action-hint-copy").slideDown();
+        },
+
+        /**
+         * Send payment action handler
+         */
+        onActionSend : function(e) {
+            var elem = $(e.target).parents(".bitcoin-address-container");
+            // We never know if the click action was succesfully complete
+            elem.find(".bitcoin-action-hint").hide();
+            elem.find(".bitcoin-action-hint-send").slideDown();
         },
 
         /**
          * Copy action handler.
          */
         onActionCopy : function(e) {
-            var elem = $(e.target).parent(".bitcoin-address-container");
+            e.preventDefault();
+            var elem = $(e.target).parents(".bitcoin-address-container");
             this.prepareCopySelection(elem);
+            return false;
+        },
+
+        /**
+         * QR code generation action.
+         */
+        onActionQR : function(e) {
+            e.preventDefault();
+            var elem = $(e.target).parents(".bitcoin-address-container");
+            var addr = elem.attr("data-bc-address");
+            var qrContainer = elem.find(".bitcoin-address-qr-container");
+
+            // Lazily generate the QR code
+            if(qrContainer.children().size() === 0) {
+                var options = $.extend({}, this.config.qr, {
+                    text: addr
+                });
+                var qrCode = new QRCode(qrContainer.get(0), options);
+            }
+
+            elem.find(".bitcoin-action-hint").hide();
+            elem.find(".bitcoin-action-hint-qr").slideDown();
+
+            return false;
         },
 
         onClick : function(e) {
-            var elem = $(e.target).parent(".bitcoin-address-container");
+            var elem = $(e.target).parents(".bitcoin-address-container");
             this.prepareCopySelection(elem);
         },
 
@@ -120,12 +163,14 @@
             var self = this;
 
             $(document.body).on("click", ".bitcoin-address-action-copy", $.proxy(this.onActionCopy, this));
+            $(document.body).on("click", ".bitcoin-address-action-send", $.proxy(this.onActionSend, this));
+            $(document.body).on("click", ".bitcoin-address-action-qr", $.proxy(this.onActionQR, this));
             $(document.body).on("click", ".bitcoin-address", $.proxy(this.onClick, this));
 
             // Hide any copy hints when user presses CTRL+C
             // on any part of the page
             $(document.body).on("copy", function() {
-                $(".bitcoin-address-copy-hint").slideUp();
+                $(".bitcoin-action-hint-copy").slideUp();
             });
 
         },
