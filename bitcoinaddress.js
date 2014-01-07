@@ -38,15 +38,15 @@ module.exports = {
         var tmpl = ["bitcoin:", address, "?"];
 
         if(amount) {
-            tmpl = tmpl.concat(["amount=", amount, "&"]);
+            tmpl = tmpl.concat(["amount=", encodeURIComponent(amount), "&"]);
         }
 
         if(label) {
-            tmpl = tmpl.concat(["label=", label, "&"]);
+            tmpl = tmpl.concat(["label=", encodeURIComponent(label), "&"]);
         }
 
         if(message) {
-            tmpl = tmpl.concat(["message=", message, "&"]);
+            tmpl = tmpl.concat(["message=", encodeURIComponent(message), "&"]);
         }
         // Remove prefixing extra
         var lastc = tmpl[tmpl.length-1];
