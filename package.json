@@ -1,0 +1,30 @@
+{
+  "name": "bitcoinprices",
+  "version": "0.0.0",
+  "description": "bitcoinaddress.js is a a JavaScript component library for making easy bitcoin payments, sending bitcoins and presenting bitcoin addresses on HTML pages.",
+  "main": "bitcoinaddress.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/miohtama/bitcoinaddress.js.git"
+  },
+  "keywords": [
+    "bitcoin",
+    "qr code"
+  ],
+  "author": "Mikko Ohtamaa <mikko@opensourcehacker.com> (http://opensourcehacker.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "~1.7.4",
+    "watchify": "~0.5.0",
+    "deglobalify": "~0.2.0",
+    "browserify": "~3.19.0",
+    "beefy": "~0.7.1",
+    "uglify-js": "~2.4.8"
+  },
+  "dependencies": {
+    "jquery": "~2.1.0-beta3"
+  }
+}

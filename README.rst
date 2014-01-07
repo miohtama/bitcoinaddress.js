@@ -3,7 +3,7 @@
 Introduction
 ---------------
 
-**bitcoinaddress.js** is a JavasSript library for making easy bitcoin payments, sending bitcoins and presenting bitcoin addresses on any HTML page.
+**bitcoinaddress.js** is a a JavaScript component library for making easy bitcoin payments, sending bitcoins and presenting bitcoin addresses on HTML pages.
 
 Features
 ---------
@@ -33,6 +33,42 @@ Put ``bitcoinaddress.js`` in your application.
 How it works
 -----------------
 
+* Include ``bitcoinaddress.js`` on your HTML page
+
+* Configure and initialize it with a ``<script>`` tag
+
+* Supply a client-side template in a hidden `<div>` on your page
+
+* When the HTML page has been loaded, ``bitcoinaddress.init()`` scans for ``.bitcoin-address`` CSS classes,
+  applies template on them and sets up UI event handlers
+
+Setting up ``<script>`` tag::
+
+    <script src="bitcoinaddress-bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            bitcoinaddress.init({
+
+                // jQuery selector defining bitcon addresses on the page
+                // needing the boost
+                selector: ".bitcoin-address",
+
+                // Id of the DOM template element we use to decorate the addresses.
+                // This must contain placefolder .bitcoin-address
+                template: "bitcoin-address-template",
+
+                // Passed directly to QRCode.js
+                // https://github.com/davidshimjs/qrcodejs
+                qr : {
+                    width: 128,
+                    height: 128,
+                    colorDark : "#000000",
+                    colorLight : "#ffffff"
+                }
+            });
+        });
+    </script>
+
 Supported data attributes
 +++++++++++++++++++++++++++
 
@@ -56,6 +92,37 @@ Other
 `Bitcoin URIs in Electrum <https://electrum.org/bitcoin_URIs.html>`_.
 
 `QRCode.js - generate QR codes in JavaScript <https://github.com/davidshimjs/qrcodejs>`_.
+
+Development
+-------------
+
+NPM + Node required.
+
+Install dependencies locally::
+
+    make setup
+
+Run the development server with auto-reload (save ``bitcoinaddress.js`` in your text editor and the browser will reload ``index.html``)::
+
+    make dev-server
+
+Run tests::
+
+    ---
+
+Make a release::
+
+    ---
+
+Internals and the development toolchain
+-------------------------------------------
+
+jQuery is used for DOM interaction. jQuery is not bundled and there are not `require` dependencies to it, so that it is easier to load from CDN.
+
+This package uses NPM, `browserify for JavaScript dependencies <http://browserify.org/>`_, `beefy development server <https://github.com/chrisdickinson/beefy>`_,
+`uglify-fs <http://lisperator.net/uglifyjs/>`_ JavaScript minimizer.
+
+Check out ``Makefile`` if you want to learn how to use these tools.
 
 Author
 ------

@@ -26,9 +26,16 @@
         }
 
         .bitcoin-address-qr-container > img,
-        .bitcoin-address-qr-container > canvas{
+        .bitcoin-address-qr-container > canvas {
             margin: 0 auto;
         }
+
+        /* For bitcoinprices, donation nominated in USD */
+        .clickable-price {
+            cursor: pointer;
+            border-bottom: 1px #888 dashed;
+        }
+
     </style>
 </head>
 <body>
@@ -43,7 +50,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="#">bitcoinprices.js</a>
+                  <a class="navbar-brand" href="#">bitcoinaddress.js</a>
                 </div>
 
                 <ul class="nav navbar-nav">
@@ -92,15 +99,56 @@
             </p>
         </div>
 
-        <p class="text-center">
-            Send 0.1 BTC donation to this project:
-        </p>
-
-        <div class="well">
+        <div id="donation-btc">
             <p class="text-center">
-                <strong class="bitcoin-address" data-bc-amount="0.1" data-bc-address="19356KxTs9Bw5AAdxens5hoxDSp5bsUKse">19356KxTs9Bw5AAdxens5hoxDSp5bsUKse</strong>
+                Send <strong data-btc-price="0.1" class="clickable-price">0.1 BTC</strong> donation to this project:
             </p>
+
+            <p class="text-center text-muted">
+                <small>
+                    The donation amount is nominated in bitcoins and the fiat amount
+                    <a href="https://github.com/miohtama/bitcoin-prices">reflects the market rates</a>.
+                </small>
+            </p>
+
+            <div class="well">
+                <p class="text-center">
+                    <strong class="bitcoin-address"
+                        data-bc-amount="0.1"
+                        data-bc-label="bitcoinaddress.js project"
+                        data-bc-message="0.1 BTC donation"
+                        data-bc-address="19356KxTs9Bw5AAdxens5hoxDSp5bsUKse">19356KxTs9Bw5AAdxens5hoxDSp5bsUKse</strong>
+                </p>
+            </div>
         </div>
+
+        <div id="donation-usd" data-usd-amount="20" hidden>
+
+            <p class="text-center">
+                Send <strong class="clickable-price"></strong> donation to this project:
+            </p>
+
+            <p class="text-center text-muted">
+                <small>
+                    The donation amount is nominated in USD and the BTC amount
+                    <a href="https://github.com/miohtama/bitcoin-prices">reflects the market rates</a>.
+                </small>
+            </p>
+
+            <!-- For the following, data-bc-amount will be filled in by JavaScript -->
+            <div class="well">
+                <p class="text-center">
+                    <strong class="bitcoin-address-usd"
+                        data-bc-address="19356KxTs9Bw5AAdxens5hoxDSp5bsUKse"
+                        data-bc-label="bitcoinaddress.js project"
+                        data-bc-message="20 USD donation">
+                        19356KxTs9Bw5AAdxens5hoxDSp5bsUKse
+                    </strong>
+                </p>
+            </div>
+
+        </div>
+
         <div class="row">
             <p class="text text-success lead text-center" style="margin-top: 3em">
                 <a href="https://github.com/miohtama/bitcoinaddress.js"><i class="fa fa-github"></i> Visit Github repository for more information</a>
@@ -151,35 +199,12 @@
 
     </div>
 
+    <!-- beefy dev server live reloads -->
+    <script src="/-/live-reload.js"></script>
 
-    <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="dist/demo.js"></script>
+
+    <!-- We include Bootstrap after demo.js which bundles jQuery -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-
-    <script src="qrcode.js"></script>
-    <script src="bitcoinaddress.js"></script>
-    <script>
-        $(document).ready(function() {
-            bitcoinaddress.init({
-
-                // jQuery selector defining bitcon addresses on the page
-                // needing the boost
-                selector: ".bitcoin-address",
-
-                // Id of the DOM template element we use to decorate the addresses.
-                // This must contain placefolder .bitcoin-address
-                template: "bitcoin-address-template",
-
-                // Passed directly to QRCode.js
-                // https://github.com/davidshimjs/qrcodejs
-                qr : {
-                    width: 128,
-                    height: 128,
-                    colorDark : "#000000",
-                    colorLight : "#ffffff",
-                    correctLevel : QRCode.CorrectLevel.H
-                }
-            });
-        });
-    </script>
 
 </body>
