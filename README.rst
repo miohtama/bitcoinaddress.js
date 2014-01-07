@@ -91,7 +91,7 @@ Other
 
 `Bitcoin URIs in Electrum <https://electrum.org/bitcoin_URIs.html>`_.
 
-`QRCode.js - generate QR codes in JavaScript <https://github.com/davidshimjs/qrcodejs>`_.
+`QRCode.js - generate QR codes in JavaScript <https://github.com/davidshimjs/qrcodejs>`_ by `Shim Sangmin <https://github.com/davidshimjs>`_.
 
 Development
 -------------

@@ -21,7 +21,6 @@ module.exports = {
 
     config : null,
 
-
     /**
      * Create URL for bitcoin URI scheme payments.
      *
@@ -98,6 +97,10 @@ module.exports = {
 
         template = $(template);
 
+        if(template.size() != 1) {
+            throw new Error("Bitcoin address template DOM does not contain a single element");
+        }
+
         return template;
     },
 
@@ -118,21 +121,22 @@ module.exports = {
             template = this.getTemplate();
         }
 
-        var $this = $(this);
-        var elem = template.clone();
+        // Make a deep copy, so we don't accidentally modify
+        // template elements in-place
+        var elem = template.clone(false, true);
 
         this.buildControls(elem, target);
-        target.replaceWith(elem);
 
-        // Make sure we are visible
-        // (HTML5 way, CSS way)
+        // Make sure we are visible (HTML5 way, CSS way)
+        // and clean up the template id if we managed to copy it around
         elem.removeAttr("hidden id");
         elem.show();
 
+        target.replaceWith(elem);
     },
 
     /**
-     * Create user interface for all bitcoin addresses on the page.
+     * Create user interface for all bitcoin address elements on the page.
      */
     applyTemplates: function() {
         var self = this;
@@ -146,7 +150,15 @@ module.exports = {
         }
 
         $(this.config.selector).each(function() {
-            self.applyTemplate($(this), template);
+
+            var $this = $(this);
+
+            // Make sure we don't apply the template on the template itself
+            if($this.parents("#" + self.config.template).size() > 0) {
+                return;
+            }
+
+            self.applyTemplate($this, template);
         });
     },
 

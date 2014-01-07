@@ -36,6 +36,22 @@
             border-bottom: 1px #888 dashed;
         }
 
+        #bitcoin-icon {
+            font-size: 128px;
+            color: #F7931A;
+        }
+
+        #bitcoin-icon .fa-circle {
+            text-shadow: 0 3px 3px rgba(32, 32, 32, 0.3);
+        }
+
+        #bitcoin-icon .fa-btc {
+            text-shadow: 0 -1px 1px black;
+            -moz-transform: rotate(20deg);
+            -webkit-transform: rotate(20deg);
+            transform: rotate(20deg);
+        }
+
     </style>
 </head>
 <body>
@@ -76,18 +92,45 @@
     <div class="container" style="min-height:480px;">
 
         <div class="jumbotron">
-          <h1>bitcoinaddress.js</h1>
-          <p>JavaScript library for human-friendly Bitcoin address presentation, payments and sending bitcoins</p>
-          <p><a class="btn btn-primary btn-lg" role="button" href="https://github.com/miohtama/bitcoinaddress.js"><i class="fa fa-github"></i> View on Github</a></p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-sm-8 text-center">
+                        <h1>bitcoinaddress.js</h1>
+
+                        <p>JavaScript library for human-friendly Bitcoin address presentation, payments and sending bitcoins.</p>
+                        <p><a class="btn btn-primary btn-lg" role="button" href="https://github.com/miohtama/bitcoinaddress.js"><i class="fa fa-github"></i> View on Github</a></p>
+
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <span class="fa-stack" id="bitcoin-icon">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-btc fa-stack fa-inverse fa-stack-1x"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <p>
             <code>bitcoinaddress.js</code> is a JavaScript library allowing you to easily
-            mark existing bitcoin addresses on the HTML page and add send bitcoins and copy actions
-            for them.
+            mark existing bitcoin addresses on the HTML page and add send bitcoins, QR code and copy actions
+            for them. bitcoinaddress.js uses <a href="https://en.bitcoin.it/wiki/BIP_0021">Bitcoin URI scheme</a>
+            and you can send <i>amount</i>, <i>address label</i> and <i>message</i> for the transactions.
         </p>
 
-        <h2>Payment example example</h2>
+        <p>
+            Bitcoin URI scheme supports making payment from many web, desktop and mobile wallets, including
+            but not limited to, Armory, Electrum, blockchain.info, Coinbase, Multibit and naturally, Bitcoin-QT.
+        </p>
+
+        <p>
+            If you combine bitcoinaddress.js with <a href="https://github.com/miohtama/bitcoin-prices">bitcoinprices.js</a>,
+            you can nominate the amount of send payment in fiat currencies like USD and EUR, and <i>bitcoinprices</i>
+            will convert the amounts to Bitcoins in-fly, using market exchange rates.
+        </p>
+
+        <h2>Bitcoin address and payment examples</h2>
 
         <p class="text-center">
             Send donations to this project to:
@@ -108,6 +151,7 @@
                 <small>
                     The donation amount is nominated in bitcoins and the fiat amount
                     <a href="https://github.com/miohtama/bitcoin-prices">reflects the market rates</a>.
+                    Choose currency by clicking the price or from the top menu.
                 </small>
             </p>
 
@@ -125,7 +169,7 @@
         <div id="donation-usd" data-usd-amount="20" hidden>
 
             <p class="text-center">
-                Send <strong class="clickable-price"></strong> donation to this project:
+                Send <strong>20 USD</strong> donation to this project:
             </p>
 
             <p class="text-center text-muted">

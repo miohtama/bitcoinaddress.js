@@ -34,6 +34,7 @@ $(document).ready(function() {
 
         // Scrape source for the amount and convert the USD nominated amount ot BTC
         var usdDonationElem = $("#donation-usd");
+        usdDonationElem.show();
         var amount = usdDonationElem.attr("data-usd-amount");
         var btcAmount = bitcoinprices.convert(parseFloat(amount), "USD", "BTC");
 
@@ -54,8 +55,7 @@ $(document).ready(function() {
         donationPrice.html(bitcoinprices.formatPrice(amountInActiveCurrency, currency, true));
         donationPrice.attr("data-btc-price", btcAmount);
 
-        // Make bitcoin price clickable
-        usdDonationElem.show();
+
     });
 
     // Initialize bitcoinprices helper library needed
