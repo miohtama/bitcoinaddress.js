@@ -4,7 +4,7 @@
 "use strict";
 
 var $ = require("jquery/dist/jquery")(window);
-var bitcoinprices = require("../bitcoinprices/bitcoinprices.js");
+var bitcoinprices = require("bitcoinprices");
 var bitcoinaddress = require("./bitcoinaddress");
 
 $(document).ready(function() {

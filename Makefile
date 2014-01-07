@@ -3,7 +3,7 @@ BIN=node_modules/.bin
 # Which files (.js, .min.js. debug.js) browserify generates
 BUNDLE_BASE=dist/bitcoinaddress-bundle
 
-all: clean test distribution demo
+all: clean test distribution site
 
 # What we need to test and build distro
 setup:
@@ -36,5 +36,7 @@ publish:
 
 # Update the Github website
 # Make sure you don't have uncommited changes
-docs:
-	git push origin:gh-pages
+site: distribution
+	git add dist/*
+	git commit -m "Updating the demo site"
+	git push origin master:gh-pages
