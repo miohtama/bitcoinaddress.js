@@ -8,6 +8,9 @@
  * @see <a href="http://www.d-project.com/" target="_blank">http://www.d-project.com/</a>
  * @see <a href="http://jeromeetienne.github.com/jquery-qrcode/" target="_blank">http://jeromeetienne.github.com/jquery-qrcode/</a>
  */
+
+/* global document */
+
 var QRCode;
 
 (function () {
@@ -218,7 +221,16 @@ var QRCode;
         return Drawing;
     })();
 
-    var useSVG = document.documentElement.tagName.toLowerCase() === "svg";
+    // Had to change this a bit, because of browserify.
+    // document properties cannot be tested when the JS is loaded,
+    // all window/document access should be done in the event handlers only.
+    var useSVG;
+    if(global) {
+        // tape + Pure NodeJS
+        useSVG = false;
+    } else {
+        useSVG = document.documentElement.tagName.toLowerCase() === "svg";
+    }
 
     // Drawing in DOM by using Table tag
     var Drawing = useSVG ? svgDrawer : !_isSupportCanvas() ? (function () {

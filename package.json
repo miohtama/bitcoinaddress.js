@@ -22,9 +22,36 @@
     "deglobalify": "~0.2.0",
     "browserify": "~3.19.0",
     "beefy": "~0.7.1",
-    "uglify-js": "~2.4.8"
+    "uglify-js": "~2.4.8",
+    "tape": "~2.3.2",
+    "testling": "~1.5.6",
+    "brfs": "0.0.8",
+    "browser-launcher": "~0.3.4"
   },
   "dependencies": {
     "jquery": "~2.1.0-beta3"
+  },
+  "testling": {
+    "files": "test.js",
+    "browsers": {
+      "ie": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "ff": [
+        25
+      ],
+      "chrome": [
+        30
+      ],
+      "safari": [
+        7
+      ],
+      "opera": [
+        12
+      ]
+    }
   }
 }

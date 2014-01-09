@@ -28,7 +28,7 @@ distribution: bundle
 	$(BIN)/browserify demo.js --outfile dist/demo.js
 
 test:
-	$(BIN)/mocha-phantomjs tests/tests.html
+	$(BIN)/tape test.js
 
 # Publish an NPM package
 publish:
