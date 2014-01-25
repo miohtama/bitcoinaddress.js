@@ -17,6 +17,9 @@
 /* global module, require */
 var qrcode = require("./qrcode.js");
 
+// jQuery reference
+var $;
+
 module.exports = {
 
     config : null,
@@ -66,6 +69,11 @@ module.exports = {
 
         // Replace .bitcoin-address in the template
         var addr = elem.find(".bitcoin-address");
+
+        // Add a maker class so that we don't reapply template
+        // on the subsequent scans
+        addr.addClass("bitcoin-address-controls");
+
         addr.text(source.attr("data-bc-address"));
 
         // Copy orignal attributes;
@@ -130,15 +138,19 @@ module.exports = {
         // Make sure we are visible (HTML5 way, CSS way)
         // and clean up the template id if we managed to copy it around
         elem.removeAttr("hidden id");
+
         elem.show();
 
         target.replaceWith(elem);
     },
 
     /**
-     * Create user interface for all bitcoin address elements on the page.
+     * Scan the page for bitcoin addresses.
+     *
+     * Create user interface for all bitcoin address elements on the page-.
+     * You can call this function multiple times if new bitcoin addresses become available.
      */
-    applyTemplates: function() {
+    scan: function() {
         var self = this;
 
         var template = this.getTemplate();
@@ -153,10 +165,17 @@ module.exports = {
 
             var $this = $(this);
 
+            // Template already applied
+            if($this.hasClass("bitcoin-address-controls")) {
+                return;
+            }
+
             // Make sure we don't apply the template on the template itself
             if($this.parents("#" + self.config.template).size() > 0) {
                 return;
             }
+
+            // Don't reapply templates on subsequent scans
 
             self.applyTemplate($this, template);
         });
@@ -246,7 +265,8 @@ module.exports = {
             throw new Error("You must give bitcoinaddress config object");
         }
         this.config = _config;
-        this.applyTemplates();
+        $ = this.config.jQuery || jQuery;
+        this.scan();
         this.initUX();
     }
 };

@@ -15,27 +15,30 @@
         /* http://davidwalsh.name/html5-hidden */
         *[hidden] { display: none; }
 
-        /* Action hints are slidedowns */
+        /* Action hints are slidedowns, hidden by default */
         .bitcoin-action-hint {
             display: none;
         }
 
+        /* Show dashed underlining so people get a hint it's clickable */
         .bitcoin-address-container .bitcoin-address {
             border-bottom: 1px dashed gray;
             cursor: pointer;
         }
 
+        /* Center QR code image */
         .bitcoin-address-qr-container > img,
         .bitcoin-address-qr-container > canvas {
             margin: 0 auto;
         }
 
-        /* For bitcoinprices, donation nominated in USD */
+        /* bitcoinprices.js -  for bitcoinprices, donation nominated in USD */
         .clickable-price {
             cursor: pointer;
             border-bottom: 1px #888 dashed;
         }
 
+        /* Demo page splash styling */
         #bitcoin-icon {
             font-size: 128px;
             color: #F7931A;

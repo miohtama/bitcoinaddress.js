@@ -76,4 +76,8 @@ $(document).ready(function() {
         // Pass our explicit jQuery object
         jQuery: $
     });
+
+    // For the test purpose, trigger extra scan to see it doesn't do anything evil
+    // with the layout
+    bitcoinaddress.scan();
 });

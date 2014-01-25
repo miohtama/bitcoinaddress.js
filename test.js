@@ -7,18 +7,19 @@
  */
 
 /* jshint globalstrict:true */
-/* globals require, __dirname */
+/* globals require, __dirname, window, console */
 
 "use strict";
 
 var test = require("tape");
-var $ = require("jquery/dist/jquery");
+var $ = require("jquery1-browser");
 var bitcoinaddress = require("./bitcoinaddress");
 
-// Load brfs
+// Load test payload HTML from an external file using brfs complile
+// time transformation
 // http://stackoverflow.com/a/16951238/315168
 var fs = require('fs');
-var TEST_HTML = fs.readFileSync(__dirname + '/test.html');
+var TEST_HTML = fs.readFileSync(__dirname + '/test-payload.html');
 
 /**
  * Initialize bitcoinaddress
@@ -29,20 +30,29 @@ function init() {
     bitcoinaddress.init({
         selector: ".bitcoin-address",
         template: "bitcoin-address-template",
+        jQuery: $
     });
 }
 
-/** Make sure we can actually load test.html */
-test("Load HTML", function(t) {
-    $(document).append(TEST_HTML);
-    t.equal($("#test.address").size(), 1);
-    t.end();
-});
+// Don't execute tests until we have document ready
+$(function() {
 
-test('Show QR code', function (t) {
-    t.plan(2);
+    /** Make sure we can actually load test.html */
+    test("Load HTML", function(t) {
+        $(document.body).append(TEST_HTML);
 
-    [2,3].map(function (x) {
-        t.pass();
+        // Check that the test payload is loaded
+        t.equal($("#test-address").size(), 1);
+        t.equal($("#bitcoin-address-template").size(), 1);
+
+        // Initialize bitcoinaddress module
+        init();
+
+        // Now #test-address should be transformed
+        var actions = $("#test-address .bitcoin-address-action");
+        t.equal(actions.size(), 3);
+
+        t.end();
     });
+
 });

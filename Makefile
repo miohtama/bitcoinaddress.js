@@ -23,12 +23,25 @@ bundle:
 dev-server:
 	$(BIN)/beefy --live demo.js:dist/demo.js 8000 -- --debug
 
+# Run a development server for unit tests
+# Generates new test bundle js file,
+# serves dummy HTML wrapper test-local.html which can be opened
+# locally in a browser.
+# We also pass in brfs transformation which allows reading
+# local files on the compilation time.
+test-server:
+	echo "Visit http://localhost:8000/test-local.html"
+	$(BIN)/beefy --live test.js:dist/test-bundle.js 8000 -- --debug -t brfs
+
+# XXX: Broken
+test:
+	$(BIN)/tape test.js
+
+# Builds bundle and builds minified version
 distribution: bundle
 	$(BIN)/uglifyjs $(BUNDLE_BASE).js > $(BUNDLE_BASE).min.js
 	$(BIN)/browserify demo.js --outfile dist/demo.js
 
-test:
-	$(BIN)/tape test.js
 
 # Publish an NPM package
 publish:
