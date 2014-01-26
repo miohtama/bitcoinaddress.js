@@ -29,34 +29,42 @@
     "browser-launcher": "~0.3.4",
     "brtapsauce": "~0.3.0",
     "sauce-tap-runner": "~0.1.1",
-    "async": "~0.2.10",
-    "jquery1-browser": "~1.10.2"
+    "async": "~0.2.10"
   },
   "dependencies": {
-    "jquery": "~2.1.0-beta3"
+    "jquery1-browser": "~1.10.2"
   },
   "browserify": { "transform": ["brfs"] },
   "testling": {
     "files": "test.js",
     "browsers": {
-      "ie": [
+        "ie": [
         8,
         9,
-        10,
-        11
-      ],
-      "ff": [
+        10
+        ],
+        "ff": [
         25
-      ],
-      "chrome": [
+        ],
+        "chrome": [
         30
-      ],
-      "safari": [
+        ],
+        "safari": [
         7
-      ],
-      "opera": [
+        ],
+        "opera": [
         12
-      ]
+        ],
+        "iphone": [
+        6
+        ],
+        "ipad": [
+        6
+        ],
+        "android-browser": [
+        4.2
+        ]
+      }
     }
   }
 }

@@ -5,7 +5,8 @@ Introduction
 
 **bitcoinaddress.js** is a a JavaScript component library for making easy bitcoin payments, sending bitcoins and presenting bitcoin addresses on HTML pages.
 
-[![browser support](https://ci.testling.com/miohtama/bitcoinaddress.js.png)](http://ci.testling.com/miohtama/bitcoinaddress.js)
+.. img:: https://ci.testling.com/miohtama/bitcoinaddress.js.png
+    :target: http://ci.testling.com/miohtama/bitcoinaddress.js
 
 Features
 ---------
@@ -100,6 +101,9 @@ Development
 
 NPM + Node required.
 
+`browserify <https://github.com/substack/node-browserify>`_ used for client-side module imports.
+`testling <http://testling.com/>`_ provides continuous integration services for various browsers.
+
 Install dependencies locally::
 
     make setup
@@ -108,9 +112,9 @@ Run the development server with auto-reload (save ``bitcoinaddress.js`` in your 
 
     make dev-server
 
-Run tests::
+Run unit tests locally::
 
-    ---
+    make test-server
 
 Make a release::
 

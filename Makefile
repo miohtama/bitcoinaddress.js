@@ -1,3 +1,9 @@
+#
+# Makefile commands how to orchestrate the development
+#
+
+
+# Where do your NPM provided scripts are
 BIN=node_modules/.bin
 
 # Which files (.js, .min.js. debug.js) browserify generates
@@ -21,6 +27,7 @@ bundle:
 
 # Run a development server which automatically rebuilds bundle when .js files are changed
 dev-server:
+	echo "Visit http://localhost:8000"
 	$(BIN)/beefy --live demo.js:dist/demo.js 8000 -- --debug
 
 # Run a development server for unit tests
@@ -33,15 +40,10 @@ test-server:
 	echo "Visit http://localhost:8000/test-local.html"
 	$(BIN)/beefy --live test.js:dist/test-bundle.js 8000 -- --debug -t brfs
 
-# XXX: Broken
-test:
-	$(BIN)/tape test.js
-
 # Builds bundle and builds minified version
 distribution: bundle
 	$(BIN)/uglifyjs $(BUNDLE_BASE).js > $(BUNDLE_BASE).min.js
 	$(BIN)/browserify demo.js --outfile dist/demo.js
-
 
 # Publish an NPM package
 publish:
