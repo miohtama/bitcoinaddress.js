@@ -36,7 +36,8 @@
     "jquery": "~2.1.0-beta3"
   },
   "testling": {
-    "files": "test.js",
+    "files": "test-bundle.js",
+    "preproces": "browserify -t brfs test.js > test-bundle.js",
     "browsers": {
       "ie": [
         8,
