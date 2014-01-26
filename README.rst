@@ -5,7 +5,7 @@ Introduction
 
 **bitcoinaddress.js** is a a JavaScript component library for making easy bitcoin payments, sending bitcoins and presenting bitcoin addresses on HTML pages.
 
-.. img:: https://ci.testling.com/miohtama/bitcoinaddress.js.png
+.. image:: https://ci.testling.com/miohtama/bitcoinaddress.js.png
     :target: http://ci.testling.com/miohtama/bitcoinaddress.js
 
 Features
