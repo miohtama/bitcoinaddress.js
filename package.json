@@ -37,7 +37,7 @@
   },
   "testling": {
     "files": "test-bundle.js",
-    "preproces": "browserify -t brfs test.js > test-bundle.js",
+    "preproces": "browserify -t brfs -o test-bundle.js test.js",
     "browsers": {
       "ie": [
         8,
