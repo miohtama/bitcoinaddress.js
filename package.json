@@ -35,9 +35,9 @@
   "dependencies": {
     "jquery": "~2.1.0-beta3"
   },
+  "browserify": { "transform": ["brfs"] },
   "testling": {
-    "files": "test-bundle.js",
-    "preproces": "browserify -t brfs -o test-bundle.js test.js",
+    "files": "test.js",
     "browsers": {
       "ie": [
         8,
