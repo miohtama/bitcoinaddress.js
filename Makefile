@@ -18,7 +18,7 @@ setup:
 clean:
 	rm dist/* > /dev/nul
 
-# Build QRCode + bitcoinaddress combo to UMD boilerplate.
+# Build QRCode + bitcoinaddress combo in UMD boilerplate wrapped distributable .Jjs bundle
 # Debug version comes with source maps.
 # https://github.com/umdjs/umd
 bundle:
@@ -38,12 +38,19 @@ dev-server:
 # local files on the compilation time.
 test-server:
 	echo "Visit http://localhost:8000/test-local.html"
-	$(BIN)/beefy --live test.js:dist/test-bundle.js 8000 -- --debug -t brfs
+	$(BIN)/beefy --live test.js:dist/test-bundle.js 8000 -- --debug
 
-# Builds bundle and builds minified version
+# Builds minified version and updates runnable demo
+# for Github pages and index.html
 distribution: bundle
 	$(BIN)/uglifyjs $(BUNDLE_BASE).js > $(BUNDLE_BASE).min.js
 	$(BIN)/browserify demo.js --outfile dist/demo.js
+
+# Run tests locally using testling command and PhantomJS headless browser
+# XXX: How to get testling local command to run properly on OSX?
+# Could not manage to get this working.
+test:
+	$(BIN)/browserify test.js | $(BIN)/testling
 
 # Publish an NPM package
 publish:
