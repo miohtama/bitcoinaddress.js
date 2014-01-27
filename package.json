@@ -17,7 +17,6 @@
   "author": "Mikko Ohtamaa <mikko@opensourcehacker.com> (http://opensourcehacker.com)",
   "license": "MIT",
   "devDependencies": {
-    "mocha": "~1.7.4",
     "browserify": "~3.19.0",
     "beefy": "~0.7.1",
     "uglify-js": "~2.4.8",
