@@ -88,9 +88,11 @@ $(function() {
             var qrContainer = addr.find(".bitcoin-address-qr-container");
             var imgs = qrContainer.find("img");
             t.equals(imgs.size(), 1);
-            t.equals(imgs.attr("src").slice(0, 5), "data:");
+            var src = imgs.attr("src");
+            t.ok(src, "QR code <img> src was empty");
+            t.equals(src.slice(0, 5), "data:");
             t.end();
-        }, 10);
+        }, 250);
 
     });
 
