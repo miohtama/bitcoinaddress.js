@@ -272,7 +272,7 @@ module.exports = {
     }
 };
 
-},{"./qrcode.js":6}],2:[function(require,module,exports){
+},{"./qrcode.js":5}],2:[function(require,module,exports){
 /* jshint globalstrict:true */
 /* globals require */
 
@@ -301,7 +301,9 @@ $(document).ready(function() {
             height: 128,
             colorDark : "#000000",
             colorLight : "#ffffff"
-        }
+        },
+
+        jQuery: $
     });
 
     // Construct USD nominated donation button
@@ -309,9 +311,14 @@ $(document).ready(function() {
 
         // Scrape source for the amount and convert the USD nominated amount ot BTC
         var usdDonationElem = $("#donation-usd");
-        usdDonationElem.show();
+
         var amount = usdDonationElem.attr("data-usd-amount");
         var btcAmount = bitcoinprices.convert(parseFloat(amount), "USD", "BTC");
+
+        // Round 7 decimals as
+        // BC wallets may not be able to deal with too many
+        // decimals in the price
+        btcAmount = Math.round(btcAmount*10000000)/10000000;
 
         // The address is marked with a special CSS class,
         // so that it doesn't get initialized with bitcoin addresses
@@ -330,7 +337,7 @@ $(document).ready(function() {
         donationPrice.html(bitcoinprices.formatPrice(amountInActiveCurrency, currency, true));
         donationPrice.attr("data-btc-price", btcAmount);
 
-
+        usdDonationElem.show();
     });
 
     // Initialize bitcoinprices helper library needed
@@ -357,7 +364,7 @@ $(document).ready(function() {
     bitcoinaddress.scan();
 });
 
-},{"./bitcoinaddress":1,"bitcoinprices":3,"jquery/dist/jquery":5}],3:[function(require,module,exports){
+},{"./bitcoinaddress":1,"bitcoinprices":3,"jquery/dist/jquery":4}],3:[function(require,module,exports){
 /**
  * bitcoinprices.js
  *
@@ -381,14 +388,19 @@ $(document).ready(function() {
         // Node. Does not work with strict CommonJS, but
         // only CommonJS-like enviroments that support module.exports,
         // like Node.
-        module.exports = factory(require('jQuery')(window));
+        // jQuery(window) is jQuery 2.1+
+        module.exports = factory(require('jquery/dist/jquery')(window));
     } else {
         // Browser globals (root is window)
         root.bitcoinprices = factory(root.jQuery);
     }
-}(this, function ($) {
+}(this, function (jQuery) {
 
     "use strict";
+
+    // Store jQuery locally, so we can override it
+    // with an external option
+    var $ = jQuery;
 
     return {
 
@@ -696,6 +708,12 @@ $(document).ready(function() {
             var self = this;
             this.config = _config;
 
+            // Allow jQuery override
+            // (solves many problems with require() jQuery includes)
+            if(this.config.jQuery) {
+                $ = this.config.jQuery;
+            }
+
             if(this.config.url) {
                 // Chec we are not running headless testing mode
                 $(document).bind("marketdataavailable", function() {
@@ -711,7 +729,7 @@ $(document).ready(function() {
     };
 }));
 
-},{"jQuery":4}],4:[function(require,module,exports){
+},{"jquery/dist/jquery":4}],4:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.0-beta3
  * http://jquery.com/
@@ -9835,8 +9853,6 @@ return jQuery;
 }));
 
 },{}],5:[function(require,module,exports){
-module.exports=require(4)
-},{}],6:[function(require,module,exports){
 var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};/**
  * @fileoverview
  * - Using the 'QRCode for Javascript library'
