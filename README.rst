@@ -22,7 +22,7 @@ Features
 Demos
 ------
 
-`Demo <http://miohtama.github.com/bitcoinaddress/index.html>`_.
+`See the demo <http://miohtama.github.com/bitcoinaddress/index.html>`_.
 
 Installation
 -------------
@@ -31,7 +31,7 @@ No server-side components needed.
 
 You must have `jQuery <http://jquery.com>`_ (version 1.9 or later) installed.
 
-Put ``bitcoinaddress.js`` in your application.
+Drop ``bitcoinaddress.js`` on your HTML page with option elements as described below.
 
 How it works
 -----------------
@@ -72,6 +72,68 @@ Setting up ``<script>`` tag::
         });
     </script>
 
+A DOM templating is used to built the controls for the Bitcoin addresses.
+Embed the following snippet hidden in <body> and customize for your needs.
+See `index.html <https://github.com/miohtama/bitcoin-prices/blob/master/index.html>`_ for example CSS styles::
+
+    <div id="bitcoin-address-template" class="bitcoin-address-container" style="display: none">
+
+        <div>
+            <span class="bitcoin-address"></span>
+        </div>
+
+        <a href="#" class="bitcoin-address-action bitcoin-address-action-send">
+            <i class="fa fa-btc"></i>
+            Pay from wallet
+        </a>
+
+        <a href="#" class="bitcoin-address-action bitcoin-address-action-copy">
+            <i class="fa fa-copy"></i>
+            Copy
+        </a>
+
+        <a href="#" class="bitcoin-address-action bitcoin-address-action-qr">
+            <i class="fa fa-qrcode"></i>
+            QR code
+        </a>
+
+        <div class="bitcoin-action-hint bitcoin-action-hint-send">
+            Sending payment to the address from locally installed Bitcoin wallet app.
+        </div>
+
+        <div class="bitcoin-action-hint bitcoin-action-hint-copy">
+            Press CTRL + C or &#x2318; + C to copy the Bitcoin address.
+        </div>
+
+        <div class="bitcoin-action-hint bitcoin-action-hint-qr">
+            <p>
+                Scan the QR code with your mobile Bitcoin app to
+                make the payment:
+            </p>
+
+            <div class="bitcoin-address-qr-container">
+                <!-- Filled in by JS on action click -->
+            </div>
+        </div>
+
+    </div>
+
+Then you can have Bitcoin addresses on your page, with or without payment amounts.
+
+Plain Bitcoin address example::
+
+    <strong class="bitcoin-address" data-bc-address="19356KxTs9Bw5AAdxens5hoxDSp5bsUKse">19356KxTs9Bw5AAdxens5hoxDSp5bsUKse</strong>
+
+Bitcoin address with payment amount example::
+
+    <strong class="bitcoin-address"
+        data-bc-amount="0.1"
+        data-bc-label="bitcoinaddress.js project"
+        data-bc-message="0.1 BTC donation"
+        data-bc-address="19356KxTs9Bw5AAdxens5hoxDSp5bsUKse">19356KxTs9Bw5AAdxens5hoxDSp5bsUKse</strong>
+
+See the demo how to nominate the payment in the fiat currency using `bitcoinprices.js <https://github.com/miohtama/bitcoin-prices>`_ library.
+
 Supported data attributes
 +++++++++++++++++++++++++++
 
@@ -102,7 +164,6 @@ Development
 NPM + Node required.
 
 `browserify <https://github.com/substack/node-browserify>`_ used for client-side module imports.
-`testling <http://testling.com/>`_ provides continuous integration services for various browsers.
 
 Install dependencies locally::
 
@@ -123,12 +184,11 @@ Make a release::
 Internals and the development toolchain
 -------------------------------------------
 
-jQuery is used for DOM interaction. jQuery is not bundled and there are not `require` dependencies to it, so that it is easier to load from CDN.
-
 This package uses NPM, `browserify for JavaScript dependencies <http://browserify.org/>`_, `beefy development server <https://github.com/chrisdickinson/beefy>`_,
 `uglify-fs <http://lisperator.net/uglifyjs/>`_ JavaScript minimizer.
 
-`tape <https://github.com/substack/tape>`_ unit testing framework is used.
+`tape <https://github.com/substack/tape>`_ unit testing framework runs the tests on
+`testling <http://testling.com/>`_ continuous integration service infrastructure.
 
 Check out ``Makefile`` if you want to learn how to use these tools.
 
