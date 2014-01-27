@@ -33,33 +33,15 @@
   "browserify": { "transform": ["brfs"] },
   "testling": {
     "files": "test.js",
-    "browsers": {
-        "ie": [
-        8,
-        9,
-        10
-        ],
-        "ff": [
-        25
-        ],
-        "chrome": [
-        30
-        ],
-        "safari": [
-        6
-        ],
-        "opera": [
-        12
-        ],
-        "iphone": [
-        6
-        ],
-        "ipad": [
-        6
-        ],
-        "android-browser": [
-        4.2
-        ]
-    }
+    "browsers": [
+        "ie/8..10",
+        "firefox/25",
+        "chrome/30",
+        "safari/6",
+        "opera/12",
+        "iphone/6",
+        "ipad/6",
+        "android-browser/4.2"
+    ]
   }
 }
