@@ -128,6 +128,8 @@ jQuery is used for DOM interaction. jQuery is not bundled and there are not `req
 This package uses NPM, `browserify for JavaScript dependencies <http://browserify.org/>`_, `beefy development server <https://github.com/chrisdickinson/beefy>`_,
 `uglify-fs <http://lisperator.net/uglifyjs/>`_ JavaScript minimizer.
 
+`tape <https://github.com/substack/tape>`_ unit testing framework is used.
+
 Check out ``Makefile`` if you want to learn how to use these tools.
 
 Author
