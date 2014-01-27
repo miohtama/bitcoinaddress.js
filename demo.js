@@ -26,7 +26,9 @@ $(document).ready(function() {
             height: 128,
             colorDark : "#000000",
             colorLight : "#ffffff"
-        }
+        },
+
+        jQuery: $
     });
 
     // Construct USD nominated donation button
@@ -34,9 +36,14 @@ $(document).ready(function() {
 
         // Scrape source for the amount and convert the USD nominated amount ot BTC
         var usdDonationElem = $("#donation-usd");
-        usdDonationElem.show();
+
         var amount = usdDonationElem.attr("data-usd-amount");
         var btcAmount = bitcoinprices.convert(parseFloat(amount), "USD", "BTC");
+
+        // Round 7 decimals as
+        // BC wallets may not be able to deal with too many
+        // decimals in the price
+        btcAmount = Math.round(btcAmount*10000000)/10000000;
 
         // The address is marked with a special CSS class,
         // so that it doesn't get initialized with bitcoin addresses
@@ -55,7 +62,7 @@ $(document).ready(function() {
         donationPrice.html(bitcoinprices.formatPrice(amountInActiveCurrency, currency, true));
         donationPrice.attr("data-btc-price", btcAmount);
 
-
+        usdDonationElem.show();
     });
 
     // Initialize bitcoinprices helper library needed

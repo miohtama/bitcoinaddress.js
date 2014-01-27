@@ -2,7 +2,7 @@
 <html>
 <head>
 
-    <title>bitcoinaddresss.js - bitcoin address send, pay and copy functions</title>
+    <title>bitcoinaddresss.js - simplified Bitcoin payment user interaction</title>
 
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet" />
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -100,7 +100,7 @@
                     <div class="col-md-8 col-sm-8 text-center">
                         <h1>bitcoinaddress.js</h1>
 
-                        <p>JavaScript library for human-friendly Bitcoin address presentation, payments and sending bitcoins.</p>
+                        <p>JavaScript library for simplified Bitcoin payment user interaction.</p>
                         <p><a class="btn btn-primary btn-lg" role="button" href="https://github.com/miohtama/bitcoinaddress.js"><i class="fa fa-github"></i> View on Github</a></p>
 
                     </div>
@@ -116,21 +116,20 @@
         </div>
 
         <p>
-            <code>bitcoinaddress.js</code> is a JavaScript library allowing you to easily
-            mark existing bitcoin addresses on the HTML page and add send bitcoins, QR code and copy actions
-            for them. bitcoinaddress.js uses <a href="https://en.bitcoin.it/wiki/BIP_0021">Bitcoin URI scheme</a>
+            <code>bitcoinaddress.js</code> is a JavaScript library for easy Bitcoin payment and
+            Bitcoin address presentation. The script scans bitcoin addresses on a HTML page and add interaction actions. bitcoinaddress.js uses <a href="https://en.bitcoin.it/wiki/BIP_0021">Bitcoin URI scheme</a>
             and you can send <i>amount</i>, <i>address label</i> and <i>message</i> for the transactions.
         </p>
 
         <p>
-            Bitcoin URI scheme supports making payment from many web, desktop and mobile wallets, including
-            but not limited to, Armory, Electrum, blockchain.info, Coinbase, Multibit and naturally, Bitcoin-QT.
+            Bitcoin URI scheme supports making payment from popular wallets, including
+            but not limited to, <i>Armory</i>, <i>Electrum</i>, <i>blockchain.info</i>, <i>Coinbase</i>, <i>Multibit</i> and <i>Bitcoin-QT</i>.
         </p>
 
         <p>
             If you combine bitcoinaddress.js with <a href="https://github.com/miohtama/bitcoin-prices">bitcoinprices.js</a>,
-            you can nominate the amount of send payment in fiat currencies like USD and EUR, and <i>bitcoinprices</i>
-            will convert the amounts to Bitcoins in-fly, using market exchange rates.
+            you can nominate the prices fiat currencies, like USD and EUR, and <i>bitcoinprices.js</i>
+            will convert the amounts to Bitcoins using the current market exchange rate.
         </p>
 
         <h2>Bitcoin address and payment examples</h2>
@@ -138,6 +137,14 @@
         <h3 class="text-center">
             Send donations to this project
         </h3>
+
+
+        <p class="text-center text-muted">
+            <small>
+                A plain Bitcoin address without suggested payment amount and transaction notes.
+            </small>
+        </p>
+
 
         <div class="well">
             <p class="text-center">
