@@ -92,7 +92,7 @@ $(function() {
             t.ok(src, "QR code <img> src was empty");
             t.equals(src.slice(0, 5), "data:");
             t.end();
-        }, 250);
+        }, 1000);
 
     });
 
