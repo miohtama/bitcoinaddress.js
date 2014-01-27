@@ -22,7 +22,7 @@ Features
 Demos
 ------
 
-`See the demo <http://miohtama.github.com/bitcoinaddress/index.html>`_.
+`See the demo <http://miohtama.github.com/bitcoinaddress.js/index.html>`_.
 
 Installation
 -------------
