@@ -2,7 +2,7 @@
 <html>
 <head>
 
-    <title>bitcoinaddresss.js - simplified Bitcoin payment user interaction</title>
+    <title>bitcoinaddress.js - simplified Bitcoin payment user interaction</title>
 
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet" />
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -53,6 +53,14 @@
             -moz-transform: rotate(20deg);
             -webkit-transform: rotate(20deg);
             transform: rotate(20deg);
+        }
+
+        .example-row {
+            margin: 30px 0;
+        }
+
+        .example-heading {
+            color: #357ebd;
         }
 
     </style>
@@ -115,93 +123,138 @@
 
         </div>
 
-        <p>
-            <code>bitcoinaddress.js</code> is a JavaScript library for easy Bitcoin payment and
-            Bitcoin address presentation. The script scans bitcoin addresses on a HTML page and add interaction actions. bitcoinaddress.js uses <a href="https://en.bitcoin.it/wiki/BIP_0021">Bitcoin URI scheme</a>
-            and you can send <i>amount</i>, <i>address label</i> and <i>message</i> for the transactions.
-        </p>
-
-        <p>
-            Bitcoin URI scheme supports making payment from popular wallets, including
-            but not limited to, <i>Armory</i>, <i>Electrum</i>, <i>blockchain.info</i>, <i>Coinbase</i>, <i>Multibit</i> and <i>Bitcoin-QT</i>.
-        </p>
-
-        <p>
-            If you combine bitcoinaddress.js with <a href="https://github.com/miohtama/bitcoin-prices">bitcoinprices.js</a>,
-            you can nominate the prices fiat currencies, like USD and EUR, and <i>bitcoinprices.js</i>
-            will convert the amounts to Bitcoins using the current market exchange rate.
-        </p>
-
         <h2>Bitcoin address and payment examples</h2>
 
-        <h3 class="text-center">
-            Send donations to this project
-        </h3>
+        <div class="row example-row">
+
+            <div class="col-md-4">
+
+                <h3>Basic features</h3>
+
+                <ul>
+                    <li>All JavaScript: no server-side components needed</li>
+                    <li>Mobile friendly - no pop-ups</li>
+                    <li>Copy-paste hinting</li>
+                    <li>Automatic QR code generation</li>
+                    <li>Support wallet apps: <strong>Armory</strong>, <strong>Electrum</strong>, <strong>blockchain.info</strong>, <strong>Coinbase</strong>, <strong>Multibit</strong>, <strong>Bitcoin-QT</strong> and others</li>
+
+                </ul>
+
+                <p>For usage instructions see <a href="">Github page</a>.</p>
+            </div>
+
+            <div class="col-md-8">
+                <h3 class="example-heading">
+                    Example: Send donations to this project
+                </h3>
 
 
-        <p class="text-center text-muted">
-            <small>
-                A plain Bitcoin address without suggested payment amount and transaction notes.
-            </small>
-        </p>
-
-
-        <div class="well">
-            <p class="text-center">
-                <strong class="bitcoin-address" data-bc-address="19356KxTs9Bw5AAdxens5hoxDSp5bsUKse">19356KxTs9Bw5AAdxens5hoxDSp5bsUKse</strong>
-            </p>
-        </div>
-
-        <div id="donation-btc">
-            <h3 class="text-center">
-                Send <strong data-btc-price="0.1" class="clickable-price">0.1 BTC</strong> donation to this project
-            </h3>
-
-            <p class="text-center text-muted">
-                <small>
-                    The donation amount is nominated in bitcoins and the fiat amount
-                    <a href="https://github.com/miohtama/bitcoin-prices">reflects the market rates</a>.
-                    Choose currency by clicking the price or from the top menu.
-                </small>
-            </p>
-
-            <div class="well">
-                <p class="text-center">
-                    <strong class="bitcoin-address"
-                        data-bc-amount="0.1"
-                        data-bc-label="bitcoinaddress.js project"
-                        data-bc-message="0.1 BTC donation"
-                        data-bc-address="19356KxTs9Bw5AAdxens5hoxDSp5bsUKse">19356KxTs9Bw5AAdxens5hoxDSp5bsUKse</strong>
+                <p class="text-center text-muted">
+                    <small>
+                        A plain Bitcoin address without suggested payment amount and transaction notes.
+                    </small>
                 </p>
+
+
+                <div class="well">
+                    <p class="text-center">
+                        <strong class="bitcoin-address" data-bc-address="19356KxTs9Bw5AAdxens5hoxDSp5bsUKse">19356KxTs9Bw5AAdxens5hoxDSp5bsUKse</strong>
+                    </p>
+                </div>
+
+                <h4>Code</h4>
+
+                <pre>
+&lt;strong class=&quot;bitcoin-address&quot;
+        data-bc-address=&quot;19356KxTs9Bw5AAdxens5hoxDSp5bsUKse&quot;&gt;
+        19356KxTs9Bw5AAdxens5hoxDSp5bsUKse
+&lt;/strong&gt;
+                </pre>
+
             </div>
         </div>
 
-        <div id="donation-usd" data-usd-amount="20" hidden>
+        <div class="row example-row">
 
-            <h3 class="text-center">
-                Send <strong>20 USD</strong> donation to this project
-            </h3>
+            <div class="col-md-4">
+                <h3>Payment details</h3>
 
-            <p class="text-center text-muted">
-                <small>
-                    The donation amount is nominated in USD and the BTC amount
-                    <a href="https://github.com/miohtama/bitcoin-prices">reflects the market rates</a>.
-                </small>
-            </p>
-
-            <!-- For the following, data-bc-amount will be filled in by JavaScript -->
-            <div class="well">
-                <p class="text-center">
-                    <strong class="bitcoin-address-usd"
-                        data-bc-address="19356KxTs9Bw5AAdxens5hoxDSp5bsUKse"
-                        data-bc-label="bitcoinaddress.js project"
-                        data-bc-message="20 USD donation">
-                        19356KxTs9Bw5AAdxens5hoxDSp5bsUKse
-                    </strong>
-                </p>
+                <ul>
+                    <li><a href="https://en.bitcoin.it/wiki/BIP_0021">Bitcoin URI scheme</a> supports <strong>amount</strong>, <strong>address label</strong> and <strong>transaction note</strong>
+                    <li><a href="https://github.com/miohtama/bitcoin-prices">bitcoinprices.js</a> converts Bitcoin amounts to the user currency in fly</li>
+                </ul>
             </div>
 
+            <div class="col-md-8">
+                <div id="donation-btc">
+                    <h3 class="example-heading">
+                        Example: Send <strong data-btc-price="0.1" class="clickable-price">0.1 BTC</strong> donation to this project
+                    </h3>
+
+                    <p class="text-center text-muted">
+                        <small>
+                            The donation amount is nominated in bitcoins and the fiat amount
+                            <a href="https://github.com/miohtama/bitcoin-prices">reflects the market rates</a>.
+                            Choose currency by clicking the price or from the top menu.
+                        </small>
+                    </p>
+
+                    <div class="well">
+                        <p class="text-center">
+                            <strong class="bitcoin-address"
+                                data-bc-amount="0.1"
+                                data-bc-label="bitcoinaddress.js project"
+                                data-bc-message="0.1 BTC donation"
+                                data-bc-address="19356KxTs9Bw5AAdxens5hoxDSp5bsUKse">19356KxTs9Bw5AAdxens5hoxDSp5bsUKse</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <div class="row example-row">
+            <div class="col-md-4">
+                <h3>Floating fiat amounts</h3>
+
+                <ul>
+                    <li>
+                         With <a href="https://github.com/miohtama/bitcoin-prices">bitcoinprices.js</a> you can also specify
+                         the payment amount in the fiat currency (USD, EUR) and it will be converted to the Bitcoin amount
+                         using the current exchange rate.</li>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-8">
+                <div id="donation-usd" data-usd-amount="20" hidden>
+
+                    <h3 class="example-heading">
+                        Send <strong>20 USD</strong> donation to this project
+                    </h3>
+
+                    <p class="text-center text-muted">
+                        <small>
+                            The donation amount is nominated in USD and the BTC amount
+                            <a href="https://github.com/miohtama/bitcoin-prices">reflects the market rates</a>.
+                        </small>
+                    </p>
+
+                    <!-- For the following, data-bc-amount will be filled in by JavaScript -->
+                    <div class="well">
+                        <p class="text-center">
+                            <strong class="bitcoin-address-usd"
+                                data-bc-address="19356KxTs9Bw5AAdxens5hoxDSp5bsUKse"
+                                data-bc-label="bitcoinaddress.js project"
+                                data-bc-message="20 USD donation">
+                                19356KxTs9Bw5AAdxens5hoxDSp5bsUKse
+                            </strong>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
 
         <div class="row">
             <p class="text text-success lead text-center" style="margin-top: 3em">
