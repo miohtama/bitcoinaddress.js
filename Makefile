@@ -60,5 +60,4 @@ publish:
 # Make sure you don't have uncommited changes
 site: distribution
 	git add dist/*
-	git commit -m "Updating the demo site"
 	git push origin master:gh-pages

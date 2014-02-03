@@ -11,11 +11,13 @@ Introduction
 Features
 ---------
 
-* Use `bitcoin: URI protocol <https://github.com/bitcoin/bips/blob/master/bip-0021.mediawiki>`_ to make payments from your desktop, web or mobile bitcoin wallet
+* Mobile and touch friendly - no pop-ups
+
+* Use `Bitcoin URI protocol <https://github.com/bitcoin/bips/blob/master/bip-0021.mediawiki>`_ to make payments from your desktop, web or mobile bitcoin wallet
 
 * Generate QR codes in-fly with JavaScript to make payments from mobile applications
 
-* Copy bitcoin address to the clipboard
+* Copy Bitcoin address to the clipboard
 
 * Customize and extend easily with custom DOM templates and JavaScript hooks
 
@@ -32,6 +34,8 @@ No server-side components needed.
 You must have `jQuery <http://jquery.com>`_ (version 1.9 or later) installed.
 
 Drop ``bitcoinaddress.js`` on your HTML page with option elements as described below.
+You can `download your preferred flavour on Github dist folder <https://github.com/miohtama/bitcoinaddress.js/tree/master/dist>_.
+The bundle includes QRCode.js library (see below).
 
 How it works
 -----------------
@@ -147,6 +151,14 @@ The following HTML5 data attributes are supported on ``.bitcoin-address`` elemen
 
 * ``data-bc-message`` - transaction message
 
+NPM packaging
+---------------
+
+This project is also packaged and distributed on `npmjs.org <https://npmjs.org/>`_.
+
+You can install the package with `browserify <http://browserify.org/>`_ and various other tools to include
+it in app JavaScript stack.
+
 Other
 ------
 
@@ -161,7 +173,8 @@ Other
 Development
 -------------
 
-NPM + Node required.
+NPM + Node required. We have a ``Makefile` which provides many commands to develop, test and
+publish this project.
 
 `browserify <https://github.com/substack/node-browserify>`_ used for client-side module imports.
 
@@ -179,7 +192,7 @@ Run unit tests locally::
 
 Make a release::
 
-    ---
+    make publish
 
 Internals and the development toolchain
 -------------------------------------------
