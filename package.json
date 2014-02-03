@@ -1,6 +1,6 @@
 {
   "name": "bitcoinaddress",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "bitcoinaddress.js is a a JavaScript UI component for making easy bitcoin payments, sending bitcoins and presenting bitcoin addresses on HTML pages.",
   "main": "bitcoinaddress.js",
   "scripts": {
