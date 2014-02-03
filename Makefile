@@ -26,7 +26,7 @@ bundle:
 	$(BIN)/browserify --standalone bitcoinaddress --debug bitcoinaddress.js --outfile $(BUNDLE_BASE).js
 
 # Run a development server which automatically rebuilds bundle when .js files are changed
-dev-server:
+demo-server:
 	echo "Visit http://localhost:8000"
 	$(BIN)/beefy --live demo.js:dist/demo.js 8000 -- --debug
 
