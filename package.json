@@ -26,7 +26,8 @@
     "brfs": "0.0.8",
     "browser-launcher": "~0.3.4",
     "async": "~0.2.10",
-    "bitcoinprices": "~0.2.1"
+    "bitcoinprices": "~0.2.1",
+    "npm-release": "0.0.4-3"
   },
   "dependencies": {
     "jquery1-browser": "~1.10.2"
