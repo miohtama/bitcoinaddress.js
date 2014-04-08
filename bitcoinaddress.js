@@ -213,6 +213,20 @@ module.exports = {
 
 
     /**
+     * Generates QR code inside the target element.
+     */
+    generateQR : function(qrContainer) {
+
+        var elem = qrContainer.parents(".bitcoin-address-container");
+        var addr = elem.attr("data-bc-address");
+
+        var options = $.extend({}, this.config.qr, {
+            text: addr
+        });
+        var qrCode = new qrcode.QRCode(qrContainer.get(0), options);
+    },
+
+    /**
      * QR code generation action.
      */
     onActionQR : function(e) {
@@ -223,10 +237,7 @@ module.exports = {
 
         // Lazily generate the QR code
         if(qrContainer.children().size() === 0) {
-            var options = $.extend({}, this.config.qr, {
-                text: addr
-            });
-            var qrCode = new qrcode.QRCode(qrContainer.get(0), options);
+            this.generateQR(qrContainer);
         }
 
         elem.find(".bitcoin-action-hint").hide();
@@ -254,6 +265,15 @@ module.exports = {
             $(".bitcoin-action-hint-copy").slideUp();
         });
 
+        if(this.config.generateQREagerly) {
+            $(".bitcoin-address-container").each(function() {
+                var elem = $(this);
+                var addr = elem.attr("data-bc-address");
+                var qrContainer = elem.find(".bitcoin-address-qr-container");
+                self.generateQR(qrContainer);
+            });
+        }
+
     },
 
     /**
@@ -261,6 +281,7 @@ module.exports = {
      */
     init : function(_config) {
         var self = this;
+
         if(!_config) {
             throw new Error("You must give bitcoinaddress config object");
         }
