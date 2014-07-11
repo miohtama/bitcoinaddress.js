@@ -19,9 +19,6 @@
 
 * [Liberty Music Store is an online store which allows musicians to sell their songs and receive Bitcoins.](https://libertymusicstore.net/). The source code of Liberty Music Store is [on Github](https://github.com/miohtama/LibertyMusicStore), so you can check it for the integration example.
 
-* The sister project [bitcoinaaddress.js for making bitcoin payments and QR codes](https://github.com/miohtama/bitcoinaddress.js).
-
-
 ## Installation
 
 No server-side components needed.
