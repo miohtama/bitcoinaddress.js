@@ -218,13 +218,16 @@ module.exports = {
     generateQR : function(qrContainer) {
 
         var elem = qrContainer.parents(".bitcoin-address-container");
+        var url;
         //var addr = elem.attr("data-bc-address");
 
-        var url = this.buildBitcoinURI(elem.attr("data-bc-address"),
+        if(this.config.qrRawAddress) {
+            url = elem.attr("data-bc-address");
+        } else {
+            url = this.buildBitcoinURI(elem.attr("data-bc-address"),
             elem.attr("data-bc-amount"),
             elem.attr("data-bc-label"));
-
-        console.log("QR address URL is ", url);
+        }
 
         var options = $.extend({}, this.config.qr, {
             text: url

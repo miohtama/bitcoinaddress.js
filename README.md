@@ -63,7 +63,13 @@ Setting up `<script>` tag:
                 height: 128,
                 colorDark : "#000000",
                 colorLight : "#ffffff"
-            }
+            },
+
+            // By default the generated QR code is bitcoin:// URL.
+            // However you might want to change this for altcoins, which do not have
+            // official protocol handlers. Set true to remove bitcoin:// from
+            // QR code.
+            qrRawAddress: false
         });
     });
 </script>

@@ -16,7 +16,7 @@ setup:
 	npm install .
 
 clean:
-	rm dist/* > /dev/nul
+	rm dist/* > /dev/null
 
 # Build QRCode + bitcoinaddress combo in UMD boilerplate wrapped distributable .Jjs bundle
 # Debug version comes with source maps.
