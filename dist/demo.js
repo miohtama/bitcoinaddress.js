@@ -223,7 +223,8 @@ module.exports = {
 
         var url = this.buildBitcoinURI(elem.attr("data-bc-address"),
             elem.attr("data-bc-amount"),
-            elem.attr("data-bc-label"));
+            elem.attr("data-bc-label"),
+            elem.attr("data-bc-message"));
 
         console.log("QR address URL is ", url);
 
